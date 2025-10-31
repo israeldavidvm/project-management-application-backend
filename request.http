@@ -1,0 +1,144 @@
+#Token 33|VOSV61Z5GLfQKT5ZQuzQJKVLvR5SBlgdWbHWXAQF7e0b573c
+
+### Authenticates a user and generate a Bearer Token
+POST http://127.0.0.1:80/api/v1/auth/login
+Content-Type: application/json
+Accept: application/json
+
+{
+    "email": "israeldavidvm@gmail.com",
+    "password": "Password1234."
+}
+
+
+### Retrieve authenticated user data.
+POST http://127.0.0.1:80/api/v1/auth/me
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 3|LamYiMEf3FZO17CbrYthO1IATnfe9ETP8ROzIZ9gd5d70874
+
+
+### Log out.
+POST http://127.0.0.1:80/api/v1/auth/logout
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 33|VOSV61Z5GLfQKT5ZQuzQJKVLvR5SBlgdWbHWXAQF7e0b573c
+
+### Create a new user.
+POST http://127.0.0.1:80/api/v1/auth/register
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 33|VOSV61Z5GLfQKT5ZQuzQJKVLvR5SBlgdWbHWXAQF7e0b573c
+
+{
+    "name": "John Doe Michael",
+    "email": "michael@gmail.com",
+    "password":"Password123."
+}
+
+
+### Create a new user.
+GET http://127.0.0.1:80/api/v1/projects
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 3|ZqRjrEKN5DNbZwnQEJBCVKKKoEJUfvCbJpqKpXsK57f5c9f7
+
+### Create a new user.
+POST http://127.0.0.1:80/api/v1/projects
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 3|ZqRjrEKN5DNbZwnQEJBCVKKKoEJUfvCbJpqKpXsK57f5c9f7
+
+{
+    "name": "Proyecto Beta",
+    "description": "Descripción del Proyecto Beta"
+}
+
+### Get users dev
+GET http://127.0.0.1:80/api/v1/users/devs
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 3|LamYiMEf3FZO17CbrYthO1IATnfe9ETP8ROzIZ9gd5d70874
+
+
+### Post users dev
+PATCH  http://127.0.0.1:80/api/v1/tasks/4
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 3|LamYiMEf3FZO17CbrYthO1IATnfe9ETP8ROzIZ9gd5d70874
+
+{
+    "title": "Diseño e implementación del Dashboard Dev",
+    "status": "completada",
+    "user_assignee_id": 3,
+    "percentage_contribution": 100
+}
+
+### Task
+GET  http://127.0.0.1:80/api/v1/tasks/summary
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 3|ZqRjrEKN5DNbZwnQEJBCVKKKoEJUfvCbJpqKpXsK57f5c9f7
+
+### Task
+GET  http://127.0.0.1:80/api/v1/users
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 30|EQyX7c7xKKnFa0xT3GnnqXL6i5dF90fPUT96mPBCea1ed0df
+
+### Task
+GET  http://127.0.0.1:80/api/v1/users/dev
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 30|EQyX7c7xKKnFa0xT3GnnqXL6i5dF90fPUT96mPBCea1ed0df
+
+
+### Task
+POST  http://127.0.0.1:80/api/v1/users
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 30|EQyX7c7xKKnFa0xT3GnnqXL6i5dF90fPUT96mPBCea1ed0df
+
+{
+    "email": "israeldavidvm@gmail.com",
+    "password": "Password1234."
+}
+
+
+#Token 33|VOSV61Z5GLfQKT5ZQuzQJKVLvR5SBlgdWbHWXAQF7e0b573c
+
+### Authenticates a user and generate a Bearer Token
+POST http://127.0.0.1:80/api/v1/auth/login
+Content-Type: application/json
+Accept: application/json
+
+{
+    "email": "israeldavidvm@gmail.com",
+    "password": "Password1234."
+}
+
+
+### Retrieve authenticated user data.
+POST http://127.0.0.1:80/api/v1/auth/me
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 33|VOSV61Z5GLfQKT5ZQuzQJKVLvR5SBlgdWbHWXAQF7e0b573c
+
+
+### Log out.
+POST http://127.0.0.1:80/api/v1/auth/logout
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 33|VOSV61Z5GLfQKT5ZQuzQJKVLvR5SBlgdWbHWXAQF7e0b573c
+
+### Create a new user.
+POST http://127.0.0.1:80/api/v1/auth/register
+Content-Type: application/json
+Accept: application/json
+Authorization: Bearer 33|VOSV61Z5GLfQKT5ZQuzQJKVLvR5SBlgdWbHWXAQF7e0b573c
+
+{
+    "name": "John Doe Michael",
+    "email": "michael@gmail.com",
+    "password":"Password123."
+}
