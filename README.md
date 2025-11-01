@@ -48,7 +48,7 @@ Tener instalado
 
 ### Clonar el Repositorio
 
-git clone https://github.com/israeldavidvm/project-management-application-fbackend.git
+git clone https://github.com/israeldavidvm/project-management-application-backend.git
 
 ### Instalacion 
 
