@@ -125,26 +125,60 @@ class TaskController extends Controller
         return response()->json(['message' => 'Task deleted successfully'], 204);
     }
 
-   public function taskSummary()
-{
-    $possibleStatuses = [
-        Task::STATUS_PENDING,
-        Task::STATUS_IN_PROGRESS,
-        Task::STATUS_COMPLETED,
-    ];
-    
-    $summary = [];
+    /**
+     * Devuelve el resumen de tareas por estado.
+     * Si el usuario es administrador, puede filtrar por 'user_id' o ver el resumen global.
+     * Si no es administrador, solo ve su propio resumen.
+     */
+    public function taskSummary(Request $request)
+    {
+        $user = auth()->user();
+        $isAdmin = $user->role === User::ROLE_ADMIN;
 
-    foreach ($possibleStatuses as $status) {
-        $count = Task::query()
-            ->where('user_assignee_id', auth()->id())
-            ->where('status', $status)
-            ->count();
+        // Por defecto, se filtra por el usuario autenticado.
+        $targetUserId = $user->id;
+
+        // Si es admin, revisamos el parámetro 'user_id'
+        if ($isAdmin) {
+            if ($request->filled('user_id')) {
+                // Si el admin especifica un user_id, lo usamos para el filtro.
+                // Es recomendable validar que el ID exista, pero por simplicidad asumimos que lo hace.
+                $targetUserId = $request->user_id;
+            } else {
+                // Si el admin NO especifica un user_id, se anula el filtro por usuario,
+                // devolviendo el resumen de TODAS las tareas del sistema.
+                $targetUserId = null;
+            }
+        }
+        
+        $possibleStatuses = [
+            Task::STATUS_PENDING,
+            Task::STATUS_IN_PROGRESS,
+            Task::STATUS_COMPLETED,
+        ];
+
+        $summary = [];
+        $totalTasks = 0;
+        
+        foreach ($possibleStatuses as $status) {
+            $query = Task::query()->where('status', $status);
             
-        $normalizedStatus = strtolower($status); 
-        $summary[$normalizedStatus] = $count;
-    }
+            // Aplicar el filtro de usuario si $targetUserId no es null.
+            if (!is_null($targetUserId)) {
+                $query->where('user_assignee_id', $targetUserId);
+            }
+            
+            $count = $query->count();
+            $totalTasks += $count;
+                
+            // Normalizar status para que coincida con las claves del frontend (ej: 'PENDIENTE' -> 'pendiente')
+            $normalizedStatus = strtolower($status); 
+            $summary[$normalizedStatus] = $count;
+        }
 
-    return response()->json($summary);
-}
+        // Se agrega el total de tareas al summary
+        $summary['total'] = $totalTasks;
+
+        return response()->json($summary);
+    }
 }
